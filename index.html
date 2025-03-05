@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理学考研伴学计划</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #4A90E2; /* 主色调：专业蓝 */
+            --secondary-color: #F5A623; /* 辅助色：温暖橙 */
+            --accent-color: #7ED321; /* 强调色：清新绿 */
+            --text-color: #2C3E50; /* 主文本色：深灰蓝 */
+            --light-bg: #F8FAFC; /* 浅色背景：淡蓝灰 */
+            --card-bg: #FFFFFF; /* 卡片背景：纯白 */
+            --success-color: #7ED321; /* 成功色：清新绿 */
+            --border-radius: 12px; /* 统一圆角 */
+            --box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1); /* 统一阴影 */
+            --section-spacing: 40px; /* 区块间距 */
+            --transition: all 0.3s ease; /* 统一过渡效果 */
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .poster-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(135deg, var(--primary-color), #357ABD);
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="25" cy="25" r="10" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="15" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="25" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="25" cy="75" r="8" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .follow-tag {
+            background-color: white;
+            color: #333;
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .problem-section {
+            background-color: var(--light-bg);
+            padding: var(--section-spacing) 20px;
+        }
+        
+        .problem-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
+        }
+        
+        .problem-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: var(--primary-color);
+        }
+        
+        .solution-section {
+            background-color: #E8F4FF;
+            padding: var(--section-spacing) 20px;
+            text-align: center;
+        }
+        
+        .solution-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            background-color: var(--secondary-color);
+            padding: 3px 5px;
+            border-radius: 3px;
+        }
+        
+        .offer-section {
+            padding: var(--section-spacing) 20px;
+            background-color: var(--light-bg);
+        }
+        
+        .offer-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(74, 144, 226, 0.1);
+            transition: var(--transition);
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
+        }
+        
+        .offer-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .offer-list {
+            list-style-type: none;
+        }
+        
+        .offer-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .offer-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .timeline-section {
+            background-color: var(--light-bg);
+            padding: 30px 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 140px;
+        }
+        
+        .timeline-content {
+            position: relative;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 90px;
+            padding: 8px 0;
+            color: var(--primary-color);
+            text-align: right;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .timeline-description {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .progress-indicator {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--accent-color), var(--success-color));
+            transition: height 0.5s ease;
+        }
+        
+        .promise-section {
+            background-color: #F8FAFC;
+            padding: var(--section-spacing) 20px;
+        }
+        
+        .promise-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .promise-list {
+            list-style-type: none;
+        }
+        
+        .promise-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .promise-item::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #ff9800;
+        }
+        
+        .benefit-section {
+            padding: var(--section-spacing) 20px;
+            background-color: #E8F4FF;
+        }
+        
+        .benefit-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .benefit-list {
+            list-style-type: none;
+        }
+        
+        .benefit-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .benefit-item::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: #0097a7;
+        }
+        
+        .price-section {
+            background-color: #E8F4FF;
+            padding: var(--section-spacing) 20px;
+            text-align: center;
+        }
+        
+        .price-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .price-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        
+        .highlight-red {
+            color: #FF4D4F;
+            font-weight: bold;
+        }
+        
+        .price-display {
+            margin: 25px 0;
+        }
+        
+        .original-price {
+            font-size: 1.2rem;
+            color: #666;
+            text-decoration: line-through;
+            margin-bottom: 15px;
+        }
+        
+        .early-bird-price {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .price-display span {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .price-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .price-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.2);
+            background-color: #357ABD;
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: var(--section-spacing) 20px;
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.2);
+            background-color: #F8FAFC;
+        }
+        
+        .team-section {
+            background-color: #f0f8ff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .team-title {
+            font-size: 1.5rem;
+            color: #1976d2;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .team-description {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #757575;
+            font-weight: bold;
+            background-color: #f8f9fa;
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+        
+        .bubble-1 {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            top: 10%;
+            left: 10%;
+        }
+        
+        .bubble-2 {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            top: 20%;
+            right: 15%;
+        }
+        
+        .bubble-3 {
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            bottom: 15%;
+            left: 20%;
+        }
+        
+        .bubble-4 {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            bottom: 10%;
+            right: 10%;
+        }
+        
+        .problem-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .offer-title, .promise-title, .benefit-title, .team-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        .nested-list {
+            list-style-type: none;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .nested-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+        
+        .nested-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster-container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+            <div class="bubble bubble-4"></div>
+            <div class="header-content">
+                <h1 class="main-title">一个不普通的招人计划标题</h1>
+                <p class="subtitle">授人以鱼不如授人以渔</p>
+            </div>
+        </header>
+        
+        <!-- 问题区域 -->
+        <section class="problem-section">
+            <h2 class="section-title">考研路上，你是否有这些困惑？</h2>
+            
+            <div class="problem-card">
+                <p><strong>担心走错方向浪费时间，看经验帖耗费心力却发现全是软广告？</strong></p>
+                <img src="images/过来人.jpg" alt="我是过来人，怎么会害你呢" class="problem-image">
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>跨专业考研，不知道重点在哪，也不知道怎么规划时间？</strong></p>
+                <img src="images/分岔路.png" alt="分岔路" class="problem-image">
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>担心备考漫长路上，孤军奋战没人分享你的喜与悲？</strong></p>
+                <img src="images/自抱自泣.png" alt="自抱自泣" class="problem-image">
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>机构都在灌输焦虑，恨不得让我啥都买一遍，动则上千过万，我究竟该怎么安排学习？</strong></p>
+                <img src="images/abandon.jpg" alt="盯着我手里的钱" class="problem-image">
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>背诵时常怀疑，背这么短够吗？背太细会不会浪费时间、性价比低？</strong></p>
+                <div class="image-placeholder">[知识渗透学习法.jpg]</div>
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>我知道经常复习印象才深，但不知为啥自己就是不太会主动复习？</strong></p>
+                <div class="image-placeholder">[abandon.jpg]</div>
+            </div>
+        </section>
+        
+        <!-- 解决方案区域 -->
+        <section class="solution-section">
+            <p class="solution-text">以上问题，我们通通为你解决！！！</p>
+            <p>我们不是机构！不是机构！不是机构！</p>
+            <p>我们只是一群希望能与你共同进步的心理学人。</p>
+            <div class="image-placeholder">[猫猫meme]</div>
+            <p>我们的宗旨是：<strong>在这个浮躁的内卷时代，打造一个彼此陪伴进步的小团体。</strong></p>
+            <p>我们坚信：<strong>授人以鱼不如授人以渔。</strong></p>
+        </section>
+        
+        <!-- 我们提供什么 -->
+        <section class="offer-section">
+            <h2 class="section-title">我们提供什么？</h2>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">贯彻学习科学的软件平台</h3>
+                <ul class="offer-list">
+                    <li class="offer-item">精心搭建普心知识库：基于真实学长学姐经验打造，通过系统引导掌握背诵技术
+                        <ul class="nested-list">
+                            <li class="nested-item">分点1</li>
+                            <li class="nested-item">分点2</li>
+                            <li class="nested-item">分点3</li>
+                        </ul>
+                    </li>
+                    <li class="offer-item">定制个人专属考点管家：定时直达微信，缩短行为链，冲破复习缺乏动力的障碍
+                        <ul class="nested-list">
+                            <li class="nested-item">分点1</li>
+                            <li class="nested-item">分点2</li>
+                            <li class="nested-item">分点3</li>
+                        </ul>
+                    </li>
+                    <li class="offer-item">2+2+2无痛进步策略：建构主义+重复记忆规律，打造概念→分点→细化的学习策略
+                        <ul class="nested-list">
+                            <li class="nested-item">分点1</li>
+                            <li class="nested-item">分点2</li>
+                            <li class="nested-item">分点3</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">共同成长氛围，跨越孤军奋战</h3>
+                <ul class="offer-list">
+                    <li class="offer-item">挣脱孤单：匿名书信漂流，分享你的考研喜与哀
+                        <ul class="nested-list">
+                            <li class="nested-item">分点1</li>
+                            <li class="nested-item">分点2</li>
+                            <li class="nested-item">分点3</li>
+                        </ul>
+                    </li>
+                    <li class="offer-item">费曼模式：学员分享会，分享借鉴彼此的学习心得
+                        <ul class="nested-list">
+                            <li class="nested-item">分点1</li>
+                            <li class="nested-item">分点2</li>
+                            <li class="nested-item">分点3</li>
+                        </ul>
+                    </li>
+                    <li class="offer-item">学以致用：定期发布主题，使用心理学知识理解分析，优秀者有小奖品
+                        <ul class="nested-list">
+                            <li class="nested-item">分点1</li>
+                            <li class="nested-item">分点2</li>
+                            <li class="nested-item">分点3</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">科学可行的进步规划</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">4-5月</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">明确方向，量变到质变</h4>
+                            <p class="timeline-description">软件系统助你无痛积累，建立科学背诵策略，萌新小白进阶背诵大神</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">6-7月</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">从被动到主动</h4>
+                            <p class="timeline-description">主题探讨培养思考习惯，费曼舞台助力全员</p>
+                            <p class="timeline-description">从被动背诵到掌控知识！</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">8-12月</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">学长学姐轮番助力</h4>
+                            <p class="timeline-description">前辈真人验证身份式直播，拒绝废话官方话</p>
+                            <p class="timeline-description">真诚而实用的各阶段干货分享！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">我们的缘分，不止于考试</h3>
+                <ul class="offer-list">
+                    <li class="offer-item">初试后，组织线下活动，学长学姐分享复试经验，线下面对面传授！</li>
+                    <li class="offer-item">复试后：
+                        <ul class="nested-list">
+                            <li class="nested-item">擅长表达、学习效率高，可成为我们新一年的嘉宾讲师</li>
+                            <li class="nested-item">擅长复盘、梳理知识点，可成为我们的新知识库管理员</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 价格区域 -->
+        <section class="price-section">
+            <div class="price-container">
+                <h3 class="price-title">以上内容贯彻<span class="highlight-red">整一年</span>考研，原价899</h3>
+                <h3 class="price-title">早鸟价只需<span class="highlight-red">499</span>！仅限前100名！</h3>
+                <div class="price-display">
+                    <div class="original-price">原价: <span>¥899</span></div>
+                    <div class="early-bird-price">早鸟价: <span class="highlight-red">¥499</span></div>
+                </div>
+                <a href="#" class="price-btn">立即申请</a>
+            </div>
+        </section>
+        
+        <!-- 承诺区域 -->
+        <section class="promise-section">
+            <h3 class="promise-title">另外我们承诺：</h3>
+            <ul class="promise-list">
+                <li class="promise-item">我们邀请的直播嘉宾，均是研一研二的心理学研究生；</li>
+                <li class="promise-item">直播分享中，嘉宾真人出镜，会提供真实资料证明身份属实；（如录取通知等）</li>
+                <li class="promise-item">我们的直播分享不讲废话、官方话，只讲最重要的内容，不浪费宝贵学习时间；</li>
+            </ul>
+        </section>
+        
+        <!-- 收获区域 -->
+        <section class="benefit-section">
+            <h3 class="benefit-title">你的收获：</h3>
+            <ul class="benefit-list">
+                <li class="benefit-item">不用在各个机构的焦虑洗脑中迷茫，前辈开局指点方向！</li>
+                <li class="benefit-item">跨考生不用忧心忡忡，跨考学长学姐分享真实上岸历程！</li>
+                <li class="benefit-item">不再对术语描述昏昏欲睡，系统掌握三步法，稳健征服每个重点！</li>
+                <li class="benefit-item">从5月到12月共达8场超级干货直播，多名学长学姐轮番帮你扫除各种迷茫！</li>
+                <li class="benefit-item">初试后匿名结束，线下认识一群同路奋战的小伙伴！线下面对面聆听学长学姐的复试经验传授！！！（暂定广州深圳）</li>
+            </ul>
+        </section>
+        
+        <!-- 底部区域 -->
+        <footer class="footer">
+            <p class="footer-text">加入我们，一起学习，一起进步！</p>
+            <a href="#" class="btn">立即申请</a>
+        </footer>
+    </div>
+</body>
+</html>
